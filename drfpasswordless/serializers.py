@@ -75,17 +75,12 @@ class AbstractBaseAliasAuthenticationSerializer(serializers.Serializer):
 
 
 class EmailAuthSerializer(AbstractBaseAliasAuthenticationSerializer):
-    def choices(self):
-        return [1,2,3]
-#         surveys = Survey.objects.all()
-#         return [x.id for x in surveys]
-    
     @property
     def alias_type(self):
         return 'email'
 
     email = serializers.EmailField()
-    survey = serializers.ChoiceField(self.choices(), required=False)
+    survey = serializers.ChoiceField([1,2,3], required=False)
         
 
 
