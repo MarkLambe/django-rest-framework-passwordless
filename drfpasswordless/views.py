@@ -52,8 +52,11 @@ class AbstractBaseObtainCallbackToken(APIView):
         if serializer.is_valid(raise_exception=True):
             # Validate -
             user = serializer.validated_data['user']
+            survey= None
+            if 'survey' in serializer.validated_data:
+                survey = serializer.validated_data['survey']
             # Create and send callback token
-            success = TokenService.send_token(user, self.alias_type, self.token_type, **self.message_payload)
+            success = TokenService.send_token(user, survey, self.alias_type, self.token_type, **self.message_payload)
 
             # Respond With Success Or Failure of Sent
             if success:
