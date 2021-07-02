@@ -40,6 +40,10 @@ class AbstractBaseAliasAuthenticationSerializer(serializers.Serializer):
     def validate(self, attrs):
         alias = attrs.get(self.alias_type)
         survey = attrs.get(self.survey_alias)
+        print('HERE PRINTS')
+        print(attrs)
+        print(survey)
+        print(alias)
 
         if alias:
             # Create or authenticate a user
