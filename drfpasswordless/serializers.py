@@ -80,7 +80,7 @@ class EmailAuthSerializer(AbstractBaseAliasAuthenticationSerializer):
         return 'email'
 
     email = serializers.EmailField()
-    survey = serializers.ChoiceField(choices(), required=False)
+    survey = serializers.ChoiceField(self.choices(), required=False)
     
     def choices(self):
         return [1,2,3]
