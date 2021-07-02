@@ -12,7 +12,6 @@ from drfpasswordless.utils import authenticate_by_token, verify_user_alias, vali
 logger = logging.getLogger(__name__)
 User = get_user_model()
 
-
 class TokenField(serializers.CharField):
     default_error_messages = {
         'required': _('Invalid Token'),
@@ -33,9 +32,14 @@ class AbstractBaseAliasAuthenticationSerializer(serializers.Serializer):
     def alias_type(self):
         # The alias type, either email or mobile
         raise NotImplementedError
+        
+    @property
+    def survey_alias(self):
+        raise NotImplementedError
 
     def validate(self, attrs):
         alias = attrs.get(self.alias_type)
+        survey = attrs.get(self.survey_alias)
 
         if alias:
             # Create or authenticate a user
@@ -76,6 +80,10 @@ class EmailAuthSerializer(AbstractBaseAliasAuthenticationSerializer):
     @property
     def alias_type(self):
         return 'email'
+    
+    @property
+    def survey_alias(self):
+        return 'survey'
 
     email = serializers.EmailField()
     survey = serializers.CharField(max_length=200, required=False)
