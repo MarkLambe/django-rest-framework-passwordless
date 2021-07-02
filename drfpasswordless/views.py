@@ -56,7 +56,7 @@ class AbstractBaseObtainCallbackToken(APIView):
             if 'survey' in serializer.validated_data:
                 survey = serializer.validated_data['survey']
             # Create and send callback token
-            success = TokenService.send_token(user, survey, self.alias_type, self.token_type, **self.message_payload)
+            success = TokenService.send_token(user, self.alias_type, self.token_type, **self.message_payload)
 
             # Respond With Success Or Failure of Sent
             if success:
@@ -84,7 +84,8 @@ class ObtainEmailCallbackToken(AbstractBaseObtainCallbackToken):
     email_html = api_settings.PASSWORDLESS_EMAIL_TOKEN_HTML_TEMPLATE_NAME
     message_payload = {'email_subject': email_subject,
                        'email_plaintext': email_plaintext,
-                       'email_html': email_html}
+                       'email_html': email_html,
+                       'survey': survey}
 
 
 class ObtainMobileCallbackToken(AbstractBaseObtainCallbackToken):
