@@ -9,7 +9,7 @@ from drfpasswordless.models import CallbackToken
 from drfpasswordless.settings import api_settings
 from drfpasswordless.utils import authenticate_by_token, verify_user_alias, validate_token_age
 
-from survey.models import Survey
+# from survey.models import Survey
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -83,8 +83,9 @@ class EmailAuthSerializer(AbstractBaseAliasAuthenticationSerializer):
     survey = serializers.ChoiceField(choices(), required=False)
     
     def choices(self):
-        surveys = Survey.objects.all()
-        return [x.id for x in surveys]
+        return [1,2,3]
+#         surveys = Survey.objects.all()
+#         return [x.id for x in surveys]
         
 
 
