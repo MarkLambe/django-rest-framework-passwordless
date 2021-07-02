@@ -18,5 +18,5 @@ class TokenService(object):
         elif alias_type == 'mobile':
             send_action = import_string(api_settings.PASSWORDLESS_SMS_CALLBACK)
         # Send to alias
-        success = send_action(user, token, **message_payload)
+        success = send_action(user, survey, token, **message_payload)
         return success
