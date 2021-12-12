@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 django = "==3.2.7"
-djangorestframework = "*"
+djangorestframework = "==3.12"
 twilio = "*"
 
 [dev-packages]
